@@ -1,18 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: coh <coh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/06 15:08:45 by coh               #+#    #+#             */
-/*   Updated: 2022/07/07 21:25:24 by coh              ###   ########.fr       */
+/*   Created: 2022/07/07 18:26:53 by coh               #+#    #+#             */
+/*   Updated: 2022/07/07 21:25:22 by coh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isascii(int c)
+#include <stdio.h>
+#include <stdlib.h>
+
+void *ft_calloc(size_t count, size_t size)
 {
-	if (0 <= c && c <= 127)
-		return (1);
-	return (0);
+	
+}
+
+
+int main()
+{
+	int len = 4;
+	int* arr = (int*)calloc(len,sizeof(int));
+	for (int i = 0; i < len; i++)
+	{
+		printf("%d",arr[i]);
+	}
 }

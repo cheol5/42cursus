@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: coh <coh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/06 16:06:49 by coh               #+#    #+#             */
+/*   Created: 2022/07/07 14:28:04 by coh               #+#    #+#             */
 /*   Updated: 2022/07/07 21:25:30 by coh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-size_t length(const char *s)
+size_t ft_strlen(const char *s)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	while (s[i])
@@ -20,22 +20,16 @@ size_t length(const char *s)
 	return (i);
 }
 
-size_t	ft_strlcat(char *dest, const char *src, size_t size)
+char	*strchr(const char *s, int c)
 {
-	size_t	ds_len;
-	size_t	sr_len;
-	size_t	i;
+	int	i;
 
-	ds_len = length(dest);
-	sr_len = length(src);
 	i = 0;
-	if (ds_len >= size)
-		return (sr_len + size);
-	while (i < sr_len && i + 1 + ds_len < size)
+	while (s[i])
 	{
-		dest[ds_len + i] = src[i];
+		if (s[i] == c)
+			return ((char *)&s[i]);
 		i++;
 	}
-	dest[ds_len + i] = '\0';
-	return (ds_len + sr_len);
+	return (0);
 }

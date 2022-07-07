@@ -1,41 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: coh <coh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/06 16:06:49 by coh               #+#    #+#             */
-/*   Updated: 2022/07/07 21:25:30 by coh              ###   ########.fr       */
+/*   Created: 2022/07/07 14:05:37 by coh               #+#    #+#             */
+/*   Updated: 2022/07/07 21:25:32 by coh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-size_t length(const char *s)
+int ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	int	i;
+	size_t i;
 
 	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
-
-size_t	ft_strlcat(char *dest, const char *src, size_t size)
-{
-	size_t	ds_len;
-	size_t	sr_len;
-	size_t	i;
-
-	ds_len = length(dest);
-	sr_len = length(src);
-	i = 0;
-	if (ds_len >= size)
-		return (sr_len + size);
-	while (i < sr_len && i + 1 + ds_len < size)
+	while (s1[i] == s2[i] && i < n)
 	{
-		dest[ds_len + i] = src[i];
+		if (s1[i] == 0)
+			return (0);
 		i++;
 	}
-	dest[ds_len + i] = '\0';
-	return (ds_len + sr_len);
+	return (int)(s1[i] - s2[i])
 }

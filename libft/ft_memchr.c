@@ -1,41 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: coh <coh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/06 16:06:49 by coh               #+#    #+#             */
-/*   Updated: 2022/07/07 21:25:30 by coh              ###   ########.fr       */
+/*   Created: 2022/07/07 17:41:25 by coh               #+#    #+#             */
+/*   Updated: 2022/07/07 21:25:26 by coh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-size_t length(const char *s)
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+
+void *ft_memchr(const void *s, int c, size_t n)
 {
-	int	i;
+	unsigned char	*a;
+	unsigned char letter;
+	size_t i;
 
+	a = (unsigned char *)s;
+	letter = (unsigned char)c;
 	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
-
-size_t	ft_strlcat(char *dest, const char *src, size_t size)
-{
-	size_t	ds_len;
-	size_t	sr_len;
-	size_t	i;
-
-	ds_len = length(dest);
-	sr_len = length(src);
-	i = 0;
-	if (ds_len >= size)
-		return (sr_len + size);
-	while (i < sr_len && i + 1 + ds_len < size)
+	while (a[i] && i < n)
 	{
-		dest[ds_len + i] = src[i];
+		if (letter == a[i])
+			return (void *)&a[i];
 		i++;
 	}
-	dest[ds_len + i] = '\0';
-	return (ds_len + sr_len);
+	return (0);
+}
+
+int main(void)
+{
+	printf("%s\n", (char *)ft_memchr("Cheolho", 'o', 5));
+	printf("%s", (char*)memchr("Cheolho", 'o', 5));
 }

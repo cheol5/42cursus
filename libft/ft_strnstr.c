@@ -1,41 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: coh <coh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/06 16:06:49 by coh               #+#    #+#             */
-/*   Updated: 2022/07/07 21:25:30 by coh              ###   ########.fr       */
+/*   Created: 2022/07/07 15:17:06 by coh               #+#    #+#             */
+/*   Updated: 2022/07/07 21:25:33 by coh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-size_t length(const char *s)
+#include <stdio.h>
+#include <stdlib.h>
+
+char	*ft_strnstr(const char *str, const char *to_find, size_t len)
 {
 	int	i;
+	int	j;
 
 	i = 0;
-	while (s[i])
+	j = 0;
+	if (to_find[j] == 0)
+		return (char*)(str);
+	while (str[i] != 0)
+	{
+		while (str[i + j] == to_find[j] && str[i + j] != 0 && i + j < len)
+			j++;
+		if (to_find[j] == 0)
+			return (char*)(&str[i]);
 		i++;
-	return (i);
+		j = 0;
+	}
+	return (0);
 }
 
-size_t	ft_strlcat(char *dest, const char *src, size_t size)
+int main()
 {
-	size_t	ds_len;
-	size_t	sr_len;
-	size_t	i;
-
-	ds_len = length(dest);
-	sr_len = length(src);
-	i = 0;
-	if (ds_len >= size)
-		return (sr_len + size);
-	while (i < sr_len && i + 1 + ds_len < size)
-	{
-		dest[ds_len + i] = src[i];
-		i++;
-	}
-	dest[ds_len + i] = '\0';
-	return (ds_len + sr_len);
+	printf("%s", ft_strnstr("Cheolho", "ho", 2));
 }
