@@ -1,14 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: coh <coh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/06 15:18:26 by coh               #+#    #+#             */
-/*   Updated: 2022/07/11 11:42:43 by marvin           ###   ########.fr       */
+/*   Created: 2022/07/07 14:36:20 by coh               #+#    #+#             */
+/*   Updated: 2022/07/07 21:25:34 by coh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <stdlib.h>
+#include <stdio.h>
 
 size_t ft_strlen(const char *s)
 {
@@ -18,4 +21,23 @@ size_t ft_strlen(const char *s)
 	while (s[i])
 		i++;
 	return (i);
+}
+
+char *ft_strrchr(const char *s, int c)
+{
+	size_t	len;
+
+	len = ft_strlen(s);
+	while (len != 0)
+	{
+		if (s[len - 1] == c)
+			return ((char *)&s[len - 1]);
+		len--;
+	}
+	return (0);
+}
+
+int main()
+{
+	printf("%s", ft_strrchr("Cheolho", 'l'));
 }
