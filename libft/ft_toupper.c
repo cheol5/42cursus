@@ -10,8 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_toupper(int c)
+#include "libft.h"
+
+int	ft_toupper(int c)
 {
 	if ('a' <= c && c <= 'z')
-		return (c - 32);
+		c = c - 32;
+	return (c);
 }

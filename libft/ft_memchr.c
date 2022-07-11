@@ -10,15 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
+#include "libft.h"
 
-void *ft_memchr(const void *s, int c, size_t n)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
 	unsigned char	*a;
-	unsigned char letter;
-	size_t i;
+	unsigned char	letter;
+	size_t			i;
 
 	a = (unsigned char *)s;
 	letter = (unsigned char)c;
@@ -26,14 +24,8 @@ void *ft_memchr(const void *s, int c, size_t n)
 	while (a[i] && i < n)
 	{
 		if (letter == a[i])
-			return (void *)&a[i];
+			return ((void *)&a[i]);
 		i++;
 	}
 	return (0);
-}
-
-int main(void)
-{
-	printf("%s\n", (char *)ft_memchr("Cheolho", 'o', 5));
-	printf("%s", (char*)memchr("Cheolho", 'o', 5));
 }

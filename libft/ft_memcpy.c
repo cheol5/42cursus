@@ -10,13 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
+#include "libft.h"
 
-void *ft_memcpy(void *dst, const void *src, size_t n)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	size_t	i;
-	unsigned char * a;
+	size_t			i;
+	unsigned char	*a;
 
 	i = 0;
 	a = dst;
@@ -25,31 +24,5 @@ void *ft_memcpy(void *dst, const void *src, size_t n)
 		a[i] = ((unsigned char *)src)[i];
 		i++;
 	}
-	return (void *)(a);
-}
-
-
-/*
-void	*ft_memcpy(void *dst, const void *src, size_t n)
-{
-	size_t	i;
-
-	i = 0;
-	if (n == 0 || dst == src)
-		return (dst);
-	if (!dst && !src)
-		return (NULL);
-	while (i < n)
-	{
-		((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
-		i++;
-	}
-	return (dst);
-}
-*/
-int main()
-{
-	char a[5] = {'a','b','c','d','e'};
-	char b[] = "CHEOL";
-	printf("%s", ft_memcpy(0,0,5));
+	return ((void *)a);
 }

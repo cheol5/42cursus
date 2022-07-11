@@ -10,12 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
+#include "libft.h"
 
-size_t ft_strlen(const char *s)
+size_t	ft_strlen(const char *s)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (s[i])
@@ -23,7 +22,7 @@ size_t ft_strlen(const char *s)
 	return (i);
 }
 
-char *ft_strrchr(const char *s, int c)
+char	*ft_strrchr(const char *s, int c)
 {
 	size_t	len;
 
@@ -35,9 +34,4 @@ char *ft_strrchr(const char *s, int c)
 		len--;
 	}
 	return (0);
-}
-
-int main()
-{
-	printf("%s", ft_strrchr("Cheolho", 'l'));
 }

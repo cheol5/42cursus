@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: coh <coh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/07 17:29:06 by coh               #+#    #+#             */
-/*   Updated: 2022/07/07 21:25:28 by coh              ###   ########.fr       */
+/*   Created: 2022/07/11 17:58:08 by coh               #+#    #+#             */
+/*   Updated: 2022/07/11 17:58:08 by coh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,41 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-void	*ft_memmove(void *dst, const void *src, size_t n)
+int	ft_cmp(char s1, char const *set)
 {
-	size_t			i;
-	size_t			len;
-	unsigned char	*a;
+	int	i;
 
 	i = 0;
-	a = dst;
-	len = ft_strlen(dst);
-	while (i < n && i + 1 < len)
+	while (set[i])
 	{
-		a[i] = ((unsigned char *)src)[i];
+		if (s1 == set[i])
+			return (-1);
 		i++;
 	}
-	a[i] = '\0';
-	return ((void *)a);
+	return (1);
+}
+
+char	*ft_strtrim(char const *s1, char const *set)
+{
+	char	*arr;
+	size_t	i;
+	size_t	len;
+
+	len = ft_strlen(s1);
+	i = 0;
+	arr = (char *)malloc((len + 1) * sizeof(char));
+	if (!arr)
+		return (0);
+	len = 0;
+	while (s1[i])
+	{
+		if (ft_cmp(s1[i], set) == 1)
+		{
+			arr[len] = s1[i];
+			len++;
+		}
+		i++;
+	}
+	arr[len] = '\0';
+	return (arr);
 }

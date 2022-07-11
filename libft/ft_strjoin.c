@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: coh <coh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/07 17:29:06 by coh               #+#    #+#             */
-/*   Updated: 2022/07/07 21:25:28 by coh              ###   ########.fr       */
+/*   Created: 2022/07/11 17:44:36 by coh               #+#    #+#             */
+/*   Updated: 2022/07/11 17:44:36 by coh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,33 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-void	*ft_memmove(void *dst, const void *src, size_t n)
+void	ft_strcpy(char *dst, char const *src, size_t idx)
 {
-	size_t			i;
-	size_t			len;
-	unsigned char	*a;
+	size_t	i;
 
 	i = 0;
-	a = dst;
-	len = ft_strlen(dst);
-	while (i < n && i + 1 < len)
+	while (src[i])
 	{
-		a[i] = ((unsigned char *)src)[i];
+		dst[idx] = src[i];
+		idx++;
 		i++;
 	}
-	a[i] = '\0';
-	return ((void *)a);
+}
+
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	size_t	i;
+	size_t	lens1;
+	size_t	lens2;
+	char	*arr;
+
+	i = 0;
+	lens1 = ft_strlen(s1);
+	lens2 = ft_strlen(s2);
+	arr = (char *)malloc((lens1 + lens2 + 1) * sizeof(char));
+	if (!arr)
+		return (0);
+	ft_strcpy(arr, s1, 0);
+	ft_strcpy(arr, s2, lens1);
+	return (arr);
 }

@@ -1,34 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: coh <coh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/07 15:17:06 by coh               #+#    #+#             */
-/*   Updated: 2022/07/07 21:25:33 by coh              ###   ########.fr       */
+/*   Created: 2022/07/11 14:51:36 by coh               #+#    #+#             */
+/*   Updated: 2022/07/11 14:51:36 by coh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *str, const char *to_find, size_t len)
+size_t	ft_strlen(const char *s)
 {
-	size_t	i;
-	size_t	j;
+	int	i;
 
 	i = 0;
-	j = 0;
-	if (to_find[j] == 0)
-		return ((char *)str);
-	while (str[i] != 0)
-	{
-		while (str[i + j] == to_find[j] && str[i + j] != 0 && i + j < len)
-			j++;
-		if (to_find[j] == 0)
-			return ((char *)&str[i]);
+	while (s[i])
 		i++;
-		j = 0;
+	return (i);
+}
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	char	*arr;
+
+	arr = (char *)malloc((len +1) * sizeof(char));
+	if (arr == 0)
+		return (0);
+	if (start + 1 > ft_strlen(s))
+		return (0);
+	if (start + len - 1 > ft_strlen(s) - 1)
+		return (0);
+	while (start < len)
+	{
+		arr[start] = s[start];
+		start++;
 	}
-	return (0);
+	return (arr);
 }

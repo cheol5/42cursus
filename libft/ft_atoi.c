@@ -10,10 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
+#include "libft.h"
 
-int ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
 	int	minus;
 	int	i;
@@ -37,14 +36,4 @@ int ft_atoi(const char *str)
 		i++;
 	}
 	return (data * minus);
-}
-
-int main()
-{
-	printf("%d\n", atoi("  '\n'  1234"));
-	printf("%d\n", atoi("    a-123"));
-	printf("%d\n", atoi("    --123"));
-	printf("%d\n", ft_atoi("    1234"));
-	printf("%d\n", ft_atoi("    a-123"));
-	printf("%d\n", ft_atoi("    --123"));
 }
