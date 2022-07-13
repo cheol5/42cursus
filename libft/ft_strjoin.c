@@ -10,21 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	ft_strcpy(char *dst, char const *src, size_t idx)
-{
-	size_t	i;
-
-	i = 0;
-	while (src[i])
-	{
-		dst[idx] = src[i];
-		idx++;
-		i++;
-	}
-	dst[idx] = '\0';
-}
+#include "./libft.h"
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
@@ -39,7 +25,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	arr = (char *)malloc((lens1 + lens2 + 1) * sizeof(char));
 	if (!arr)
 		return (0);
-	ft_strcpy(arr, s1, 0);
-	ft_strcpy(arr, s2, lens1);
+	ft_strlcpy(arr, s1, lens1);
+	ft_strlcpy(arr + lens1 - 1, s2, lens2);
 	return (arr);
 }

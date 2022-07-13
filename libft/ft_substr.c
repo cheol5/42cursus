@@ -10,21 +10,26 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "./libft.h"
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*arr;
-	size_t	idx;
+	size_t	idx_size;
+	size_t	length;
 
+	length = ft_strlen(s);
 	if (!s)
 		return (0);
-	idx = 0;
-	arr = (char *)malloc((len +1) * sizeof(char));
+	if ((size_t)start >= length)
+		return (ft_strdup(""));
+	if (length - start >= len)
+		idx_size = len;
+	else
+		idx_size = length - start;
+	arr = (char *)malloc((idx_size + 1) * sizeof(char));
 	if (arr == 0)
 		return (0);
-	if ((size_t)start >= ft_strlen(s))
-		return (ft_strdup(""));
-	ft_strlcpy(arr, s + start, len);
+	ft_strlcpy(arr, s + start, idx_size);
 	return (arr);
 }
