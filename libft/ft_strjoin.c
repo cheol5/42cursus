@@ -12,16 +12,6 @@
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
-
 void	ft_strcpy(char *dst, char const *src, size_t idx)
 {
 	size_t	i;
@@ -33,6 +23,7 @@ void	ft_strcpy(char *dst, char const *src, size_t idx)
 		idx++;
 		i++;
 	}
+	dst[idx] = '\0';
 }
 
 char	*ft_strjoin(char const *s1, char const *s2)

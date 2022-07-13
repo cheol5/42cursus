@@ -12,51 +12,25 @@
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
-
-int	ft_cmp(char s1, char const *set)
-{
-	int	i;
-
-	i = 0;
-	while (set[i])
-	{
-		if (s1 == set[i])
-			return (-1);
-		i++;
-	}
-	return (1);
-}
-
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	char	*arr;
-	size_t	i;
-	size_t	len;
+	size_t	head;
+	size_t	tail;
+	char	*str;
 
-	len = ft_strlen(s1);
-	i = 0;
-	arr = (char *)malloc((len + 1) * sizeof(char));
-	if (!arr)
-		return (0);
-	len = 0;
-	while (s1[i])
+	str = 0;
+	if (s1 != 0 && set != 0)
 	{
-		if (ft_cmp(s1[i], set) == 1)
-		{
-			arr[len] = s1[i];
-			len++;
-		}
-		i++;
+		head = 0;
+		tail = ft_strlen(s1);
+		while (s1[head] && ft_strchr(set, s1[head]))
+			head++;
+		while (ft_strchr(set, s1[tail - 1]) && tail > head)
+			tail--;
+		str = (char *)malloc(sizeof(char) * (tail - head + 1));
+		if (!str)
+			return (0);
+		ft_strlcpy(str, &s1[head], tail - head + 1);
 	}
-	arr[len] = '\0';
-	return (arr);
+	return (str);
 }

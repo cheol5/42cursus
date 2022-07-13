@@ -12,31 +12,27 @@
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
-
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*arr;
+	size_t	idx;
 
+	if (!s)
+		return (0);
+	idx = 0;
 	arr = (char *)malloc((len +1) * sizeof(char));
 	if (arr == 0)
 		return (0);
-	if (start + 1 > ft_strlen(s))
-		return (0);
-	if (start + len - 1 > ft_strlen(s) - 1)
-		return (0);
-	while (start < len)
+	if ((size_t)start >= ft_strlen(s))
+		return (ft_strdup(""));
+	while (len--)
 	{
-		arr[start] = s[start];
+		if (!s[start])
+			break ;
+		arr[idx] = s[start];
+		idx++;
 		start++;
 	}
+	arr[idx] = '\0';
 	return (arr);
 }

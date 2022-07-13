@@ -12,12 +12,12 @@
 
 #include "./libft.h"
 
-int		word_count(char const *s, char c);
-char	**ft_split(char const *s, char c);
-void	cpy(char *dst, char const *s, char c);
-void	split(char **arr, char const *s1, char c);
+static int	word_count(char const *s, char c);
+char		**ft_split(char const *s, char c);
+static void	cpy(char *dst, char const *s, char c);
+static void	split(char **arr, char const *s1, char c);
 
-int	ft_cmp(char s1, char set)
+static int	ft_cmp(char s1, char set)
 {
 	if (s1 == set || s1 == '\0')
 		return (-1);
@@ -36,7 +36,7 @@ char	**ft_split(char const *s, char c)
 	return (arr);
 }
 
-int	word_count(char const *s, char c)
+static int	word_count(char const *s, char c)
 {
 	int	word;
 	int	i;
@@ -52,7 +52,7 @@ int	word_count(char const *s, char c)
 	return (word);
 }
 
-void	split(char **arr, char const *s1, char c)
+static void	split(char **arr, char const *s1, char c)
 {
 	int	i;
 	int	j;
@@ -77,7 +77,7 @@ void	split(char **arr, char const *s1, char c)
 	}
 }
 
-void	cpy(char *dst, char const *s, char c)
+static void	cpy(char *dst, char const *s, char c)
 {
 	int	i;
 
