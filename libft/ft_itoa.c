@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "./libft.h"
 
-int	getlen(int num)
+static int	getlen(int num)
 {
 	int	length;
 

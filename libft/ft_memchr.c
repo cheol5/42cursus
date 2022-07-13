@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "./libft.h"
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
@@ -21,7 +21,7 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	a = (unsigned char *)s;
 	letter = (unsigned char)c;
 	i = 0;
-	while (a[i] && i < n)
+	while (i < n)
 	{
 		if (letter == a[i])
 			return ((void *)&a[i]);

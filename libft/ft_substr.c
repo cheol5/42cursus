@@ -25,14 +25,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		return (0);
 	if ((size_t)start >= ft_strlen(s))
 		return (ft_strdup(""));
-	while (len--)
-	{
-		if (!s[start])
-			break ;
-		arr[idx] = s[start];
-		idx++;
-		start++;
-	}
-	arr[idx] = '\0';
+	ft_strlcpy(arr, s + start, len);
 	return (arr);
 }
