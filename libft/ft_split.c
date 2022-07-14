@@ -15,7 +15,7 @@
 static int	word_count(char const *s, char c);
 char		**ft_split(char const *s, char c);
 static void	cpy(char *dst, char const *s, char c);
-static void	split(char **arr, char const *s1, char c);
+static int	split(char **arr, char const *s1, char c, int word);
 
 static int	ft_cmp(char s1, char set)
 {
@@ -26,12 +26,28 @@ static int	ft_cmp(char s1, char set)
 
 char	**ft_split(char const *s, char c)
 {
-	const int		count = word_count(s, c);
-	char **const	arr = (char **)malloc(sizeof(char *) * (count + 1));
+	int				count;
+	char			**arr;
+	int				idx;
+	int				i;
 
+	if (!s)
+		return (0);
+	count = word_count(s, c);
+	arr = (char **)malloc(sizeof(char *) * (count + 1));
 	if (!arr)
 		return (0);
-	split(arr, s, c);
+	idx = split(arr, s, c, 0);
+	i = 0;
+	if (idx != -1)
+	{
+		while (i < idx)
+		{
+			free(arr[i]);
+			i++;
+		}
+		free(arr);
+	}
 	arr[count] = 0;
 	return (arr);
 }
@@ -52,14 +68,12 @@ static int	word_count(char const *s, char c)
 	return (word);
 }
 
-static void	split(char **arr, char const *s1, char c)
+static int	split(char **arr, char const *s1, char c, int word)
 {
 	int	i;
 	int	j;
-	int	word;
 
 	i = 0;
-	word = 0;
 	while (s1[i])
 	{
 		if (ft_cmp(s1[i], c) == -1)
@@ -70,11 +84,14 @@ static void	split(char **arr, char const *s1, char c)
 			while (ft_cmp(s1[i + j], c) == 1)
 				j++;
 			arr[word] = (char *)malloc((j + 1) * sizeof(char));
+			if (!arr[word])
+				return (word);
 			cpy(arr[word], s1 + i, c);
 			word++;
 			i += j;
 		}
 	}
+	return (-1);
 }
 
 static void	cpy(char *dst, char const *s, char c)

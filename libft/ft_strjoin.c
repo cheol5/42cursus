@@ -20,12 +20,14 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	char	*arr;
 
 	i = 0;
+	if (!s1 || !s2)
+		return (0);
 	lens1 = ft_strlen(s1);
 	lens2 = ft_strlen(s2);
 	arr = (char *)malloc((lens1 + lens2 + 1) * sizeof(char));
 	if (!arr)
 		return (0);
-	ft_strlcpy(arr, s1, lens1);
-	ft_strlcpy(arr + lens1 - 1, s2, lens2);
+	ft_strlcpy(arr, s1, lens1 + 1);
+	ft_strlcpy(arr + lens1, s2, lens2 + 1);
 	return (arr);
 }

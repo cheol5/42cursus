@@ -18,9 +18,9 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	size_t	idx_size;
 	size_t	length;
 
-	length = ft_strlen(s);
 	if (!s)
 		return (0);
+	length = ft_strlen(s);
 	if ((size_t)start >= length)
 		return (ft_strdup(""));
 	if (length - start >= len)
@@ -30,6 +30,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	arr = (char *)malloc((idx_size + 1) * sizeof(char));
 	if (arr == 0)
 		return (0);
-	ft_strlcpy(arr, s + start, idx_size);
+	ft_strlcpy(arr, s + start, idx_size + 1);
 	return (arr);
 }
