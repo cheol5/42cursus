@@ -17,8 +17,14 @@ all		:	$(NAME)
 .c.o	:
 			$(GCC) $(CFLAG) -c $< -o $@
 
-$(NAME)	:	$(OBJS)
-			ar rcs $(NAME) $(OBJS)
+$(NAME)	:	$(OBJECTS)
+			ar rcs $(NAME) $(OBJECTS)
+
+ifdef WITh_BONUS
+	$(OBJECTS) = $(OBJS) $(OBJS_BN)
+else
+	$(OBJECTS) = $(OBJS)
+endif
 
 clean	:
 			rm -f $(OBJS) $(OBJS_BN)
@@ -28,7 +34,7 @@ fclean	:	clean
 
 re		:	fclean all
 
-bonus	:	$(OBJS) $(OBJS_BN)
-			ar rcs $(NAME) $(OBJS) $(OBJS_BN)
+bonus	:	
+			make WITh_BONUS=1 all
 
 .PHONY	:	all clean fclean re
