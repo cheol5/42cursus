@@ -6,7 +6,7 @@
 /*   By: coh <coh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 15:45:05 by coh               #+#    #+#             */
-/*   Updated: 2022/07/14 20:36:51 by coh              ###   ########.fr       */
+/*   Updated: 2022/07/15 18:02:02 by coh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	t_list	*head;
 	t_list	*cur;
 
-	if (!lst || !f)
-		return (0);
 	head = 0;
 	while (lst)
 	{

@@ -26,15 +26,11 @@ static int	ft_cmp(char s1, char set)
 
 char	**ft_split(char const *s, char c)
 {
-	int				count;
-	char			**arr;
+	const int		count = word_count(s, c);
+	char **const	arr = (char **)malloc(sizeof(char *) * (count + 1));
 	int				idx;
 	int				i;
 
-	if (!s)
-		return (0);
-	count = word_count(s, c);
-	arr = (char **)malloc(sizeof(char *) * (count + 1));
 	if (!arr)
 		return (0);
 	idx = split(arr, s, c, 0);

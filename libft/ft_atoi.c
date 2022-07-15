@@ -10,11 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+# include <limits.h>
+
+int check_overflow(unsigned long long num, int minus)
+{
+	
+}
+
 int	ft_atoi(const char *str)
 {
-	int	minus;
-	int	i;
-	int	data;
+	int					minus;
+	int					i;
+	unsigned long long	data;
 
 	i = 0;
 	minus = 1;
@@ -33,5 +40,6 @@ int	ft_atoi(const char *str)
 		data += str[i] - '0';
 		i++;
 	}
-	return (data * minus);
+	data = check_overflow(data, minus);
+	return ((int)data * minus);
 }
