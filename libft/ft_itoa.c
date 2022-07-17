@@ -39,7 +39,6 @@ char	*ft_itoa(int n)
 	if (!arr)
 		return (0);
 	arr[len--] = '\0';
-	if (n == 0)
 	arr[0] = '0';
 	if (temp_n < 0)
 	{

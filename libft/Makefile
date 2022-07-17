@@ -12,6 +12,12 @@ OBJS	= $(SRCS:.c=.o)
 OBJS_BN = $(SRCS_BN:.c=.o)
 INCLUDES= ./libft.h
 
+ifdef WITH_BONUS
+	OBJECTS = $(OBJS) $(OBJS_BN)
+else
+	OBJECTS = $(OBJS)
+endif
+
 all		:	$(NAME)
 
 .c.o	:
@@ -19,12 +25,6 @@ all		:	$(NAME)
 
 $(NAME)	:	$(OBJECTS)
 			ar rcs $(NAME) $(OBJECTS)
-
-ifdef WITh_BONUS
-	$(OBJECTS) = $(OBJS) $(OBJS_BN)
-else
-	$(OBJECTS) = $(OBJS)
-endif
 
 clean	:
 			rm -f $(OBJS) $(OBJS_BN)
@@ -35,6 +35,6 @@ fclean	:	clean
 re		:	fclean all
 
 bonus	:	
-			make WITh_BONUS=1 all
+			make WITH_BONUS=1 all
 
-.PHONY	:	all clean fclean re
+.PHONY	:	all clean fclean re bonus
