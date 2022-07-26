@@ -18,10 +18,10 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	if (!s1)
 		s1 = ft_strdup("");
-	if(!s2)
-		return (0);
 	lens1 = ft_strlen(s1);
 	lens2 = ft_strlen(s2);
+	if (!lens2 && !lens1)
+		return (0);
 	arr = (char *)malloc((lens1 + lens2 + 1) * sizeof(char));
 	if (!arr)
 		return (0);

@@ -4,7 +4,6 @@
 #include <unistd.h>
 #include <stdlib.h>
 #define BUFFER_SIZE 5
-
 char	*find_NL(char *temp, int fd, char **str, int *nbyte);
 char 	*get_next_line(int fd);
 size_t	ft_strlen(const char *s);

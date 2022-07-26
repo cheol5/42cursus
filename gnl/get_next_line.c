@@ -13,6 +13,8 @@ char *get_next_line(int fd)
 	if (!temp)
 		return (0);
 	line = one_line(temp);
+	if (!nbyte)
+		temp = 0;
 	if (str)
 		temp = ft_strdup(str + 1);
 	return (line);
@@ -23,10 +25,9 @@ char	*find_NL(char *temp, int fd, char **str, int *nbyte)
 	char *buf;
 
 	buf = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
-	while (!(*str = ft_strchr(temp, '\n')))
+	while (!(*str = ft_strchr(temp, '\n')) && *nbyte)
 	{
 		*nbyte = read(fd, buf, BUFFER_SIZE);
-		printf("buf:%s\n", buf);
 		if (*nbyte == -1)
 		{
 			free(buf);
@@ -34,7 +35,6 @@ char	*find_NL(char *temp, int fd, char **str, int *nbyte)
 		}
 		buf[*nbyte] = '\0';
 		temp = ft_strjoin(temp, buf);
-		
 	}
 	free(buf);
 	return (temp);
