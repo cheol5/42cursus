@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: coh <coh@student.42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/26 17:44:10 by coh               #+#    #+#             */
+/*   Updated: 2022/07/26 21:33:50 by coh              ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
 size_t	ft_strlen(const char *s)
@@ -10,23 +22,30 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	size_t	lens1;
 	size_t	lens2;
 	char	*arr;
 
 	if (!s1)
-		s1 = ft_strdup("");
+	{
+		s1 = (char *)malloc(1);
+		s1[0] = '\0';
+	}
 	lens1 = ft_strlen(s1);
 	lens2 = ft_strlen(s2);
 	if (!lens2 && !lens1)
+	{
+		free(s1);
 		return (0);
+	}
 	arr = (char *)malloc((lens1 + lens2 + 1) * sizeof(char));
 	if (!arr)
 		return (0);
 	ft_strlcpy(arr, s1, lens1 + 1);
 	ft_strlcpy(arr + lens1, s2, lens2 + 1);
+	free(s1);
 	return (arr);
 }
 
@@ -34,12 +53,14 @@ char	*ft_strchr(const char *s, int c)
 {
 	size_t	i;
 	char	cc;
+	size_t	j;
 
 	cc = (char)c;
 	i = 0;
 	if (!s)
 		return (0);
-	while (i <= ft_strlen(s))
+	j = ft_strlen(s);
+	while (i <= j)
 	{
 		if (s[i] == cc)
 			return ((char *)&s[i]);
@@ -48,7 +69,7 @@ char	*ft_strchr(const char *s, int c)
 	return (0);
 }
 
-char	*one_line(const char *src)
+char	*one_line(char *src)
 {
 	char	*nomi;
 	int		i;
@@ -67,7 +88,7 @@ char	*one_line(const char *src)
 		nomi[i] = src[i];
 		i++;
 		if (src[i - 1] == '\n')
-			break;
+			break ;
 	}
 	nomi[i] = '\0';
 	return (nomi);

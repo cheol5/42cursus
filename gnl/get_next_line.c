@@ -1,18 +1,34 @@
-#include "get_next_line.h"
-#include <stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: coh <coh@student.42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/26 17:38:11 by coh               #+#    #+#             */
+/*   Updated: 2022/07/26 21:34:37 by coh              ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-char *get_next_line(int fd)
+#include "get_next_line.h"
+
+char	*get_next_line(int fd)
 {
 	char		*str;
 	char		*line;
 	static char	*temp;
 	static int	nbyte;
-	
+
 	nbyte = 1;
-	temp = find_NL(temp, fd, &str, &nbyte);
+	temp = find_nl(temp, fd, &str, &nbyte);
 	if (!temp)
+	{	
+		free(temp);
 		return (0);
+	}
 	line = one_line(temp);
+	free(temp);
+	temp = 0;
 	if (!nbyte)
 		temp = 0;
 	if (str)
@@ -20,13 +36,15 @@ char *get_next_line(int fd)
 	return (line);
 }
 
-char	*find_NL(char *temp, int fd, char **str, int *nbyte)
+char	*find_nl(char *temp, int fd, char **str, int *nbyte)
 {
-	char *buf;
+	char	*buf;
 
 	buf = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
-	while (!(*str = ft_strchr(temp, '\n')) && *nbyte)
+	*str = ft_strchr(temp, '\n');
+	while (!(*str) && *nbyte)
 	{
+		*str = ft_strchr(temp, '\n');
 		*nbyte = read(fd, buf, BUFFER_SIZE);
 		if (*nbyte == -1)
 		{
@@ -40,7 +58,7 @@ char	*find_NL(char *temp, int fd, char **str, int *nbyte)
 	return (temp);
 }
 
-char	*ft_strdup(const char *src)
+char	*ft_strdup(char *src)
 {
 	char	*nomi;
 	int		i;
