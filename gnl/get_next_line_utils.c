@@ -6,7 +6,7 @@
 /*   By: coh <coh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 17:44:10 by coh               #+#    #+#             */
-/*   Updated: 2022/07/26 21:33:50 by coh              ###   ########.fr       */
+/*   Updated: 2022/07/29 17:21:32 by coh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,6 @@ char	*ft_strjoin(char *s1, char *s2)
 	}
 	lens1 = ft_strlen(s1);
 	lens2 = ft_strlen(s2);
-	if (!lens2 && !lens1)
-	{
-		free(s1);
-		return (0);
-	}
 	arr = (char *)malloc((lens1 + lens2 + 1) * sizeof(char));
 	if (!arr)
 		return (0);
@@ -75,7 +70,7 @@ char	*one_line(char *src)
 	int		i;
 
 	i = 0;
-	if (!src)
+	if (!src[0])
 		return (0);
 	while (src[i] && src[i] != '\n')
 		i++;

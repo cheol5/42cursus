@@ -6,7 +6,7 @@
 /*   By: coh <coh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 17:43:19 by coh               #+#    #+#             */
-/*   Updated: 2022/07/26 21:17:15 by coh              ###   ########.fr       */
+/*   Updated: 2022/07/29 17:31:27 by coh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+#ifndef BUFFER_SIZE
+# define BUFFER_SIZE 1
+#endif
 
 char	*find_nl(char *temp, int fd, char **str, int *nbyte);
 char	*get_next_line(int fd);
@@ -22,7 +25,7 @@ size_t	ft_strlen(const char *s);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strchr(const char *s, int c);
 char	*one_line(char *src);
-char	*ft_strdup(char *src);
+char	*ft_strdup(char *src, char *temp);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 
 #endif
