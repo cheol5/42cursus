@@ -6,7 +6,7 @@
 /*   By: coh <coh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 17:43:19 by coh               #+#    #+#             */
-/*   Updated: 2022/07/27 18:40:00 by coh              ###   ########.fr       */
+/*   Updated: 2022/07/29 17:31:27 by coh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+#ifndef BUFFER_SIZE
 # define BUFFER_SIZE 1
+#endif
+
 char	*find_nl(char *temp, int fd, char **str, int *nbyte);
 char	*get_next_line(int fd);
 size_t	ft_strlen(const char *s);
