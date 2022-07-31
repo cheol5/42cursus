@@ -15,9 +15,6 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 1
-#endif
 
 char	*find_nl(char *temp, int fd, char **str, int *nbyte);
 char	*get_next_line(int fd);
