@@ -73,7 +73,7 @@ char	*ft_strdup(char *src, char *temp)
 	nomi = (char *)malloc((i + 1) * sizeof(char));
 	if (nomi == 0)
 	{	
-		temp = 0;
+		free(temp);
 		return (0);
 	}
 	i = 0;
