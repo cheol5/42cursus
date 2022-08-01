@@ -28,6 +28,7 @@ char	*get_next_line(int fd)
 	line = one_line(temp);
 	if (str)
 		temp = ft_strdup(str + 1, temp);
+	if (str)
 	if (!nbyte)
 	{
 		free(temp);
@@ -71,7 +72,10 @@ char	*ft_strdup(char *src, char *temp)
 		i++;
 	nomi = (char *)malloc((i + 1) * sizeof(char));
 	if (nomi == 0)
+	{	
+		temp = 0;
 		return (0);
+	}
 	i = 0;
 	while (src[i])
 	{
