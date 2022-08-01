@@ -26,6 +26,8 @@ char	*get_next_line(int fd)
 	if (!temp)
 		return (0);
 	line = one_line(temp);
+	if (!line)
+		free(temp);
 	if (str)
 		temp = ft_strdup(str + 1, temp);
 	if (str)
