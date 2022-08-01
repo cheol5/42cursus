@@ -37,7 +37,10 @@ char	*ft_strjoin(char *s1, char *s2)
 	lens2 = ft_strlen(s2);
 	arr = (char *)malloc((lens1 + lens2 + 1) * sizeof(char));
 	if (!arr)
+	{	
+		free(s1);
 		return (0);
+	}
 	ft_strlcpy(arr, s1, lens1 + 1);
 	ft_strlcpy(arr + lens1, s2, lens2 + 1);
 	free(s1);
